@@ -2,11 +2,27 @@
 const express = require('express')
 const app = express()
 const port = 3000
-//set express handlebars(exphbs)
+
+// set express handlebars(exphbs)
+
 const exphbs = require('express-handlebars')
 app.engine('handlebars', exphbs({ defaultlayout: 'main' }))
 app.set('view engine', 'handlebars')
-//read restaurant_list.json
+
+// set Mongoose
+const mongoose = require('mongoose') // 載入 mongoose
+mongoose.connect('mongodb://localhost/restaurant_list', { useNewUrlParser: true, useUnifiedTopology: true }) // 設定連線到 mongoDB
+
+const db = mongoose.connection       // 取得資料庫連線狀態
+db.on('error', () => {               // 連線異常
+  console.log('mongodb error!')
+})
+db.once('open', () => {              // 連線成功
+  console.log('mongodb connected!')
+})
+
+
+// read restaurant_list.json
 const restaurantList = require('./restaurant.json')
 
 // setting static files

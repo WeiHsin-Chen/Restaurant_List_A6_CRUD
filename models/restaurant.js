@@ -1,35 +1,28 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const image_root = 'https://assets-lighthouse.s3.amazonaws.com/uploads/image/file'
 
 const restaurantSchema = new Schema({
-  id: mongoose.ObjectId,
+  id: String,
 
   name: {
-    type: String, // 資料型別是字串
-    required: true // 這是個必填欄位
+    type: String,
+    required: true
   },
 
   name_en: String,
 
   category: String,
 
-  image: {
-    type: String,
-    get: v => `${image_root}${v}`  //'https://assets-lighthouse.s3.amazonaws.com/uploads/image/file + ${v}'
-  },
+  image: String,
 
   location: String,
 
   phone: String,
 
-  google_map: {
-    type: String,
-    get: v => `${v}`
-  },
+  google_map: String,
 
   rating: Number,
 
   description: String
 })
-module.exports = mongoose.model('Todo', restaurantSchema)
+module.exports = mongoose.model('Restaurant', restaurantSchema)

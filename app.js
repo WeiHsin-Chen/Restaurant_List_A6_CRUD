@@ -119,13 +119,19 @@ app.post('/restaurants/:id/delete', (req, res) => {
     .catch(error => console.log(error))
 })
 
-//route setting for search
+// route setting for search not yet
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  const restaurants = restaurantList.filter(restaurant => {
-    return restaurant.name.toLowerCase().includes(keyword.toLowerCase())
-  })
-  res.render('index', { restaurants: restaurants, keyword: keyword })
+
+  return restaurantList.find({ name: `${keyword}` })
+    .lean()
+    .then((restaurant) => res.render('index', { restaurant }))
+    .catch(error => console.log(error))
+
+  // const restaurants = restaurantList.filter(restaurant => {
+  //   return restaurant.name.toLowerCase().includes(keyword.toLowerCase())
+  // })
+  // res.render('index', { restaurants: restaurants, keyword: keyword })
 })
 
 //start and listen on the Express server

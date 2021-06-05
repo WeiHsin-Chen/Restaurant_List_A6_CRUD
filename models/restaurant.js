@@ -15,7 +15,10 @@ const restaurantSchema = new Schema({
 
   image: String,
 
-  location: String,
+  location: {
+    type: String,
+    ruquired: true
+  },
 
   phone: String,
 

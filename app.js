@@ -25,14 +25,14 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // read models seeder
-const restaurants = require('./models/restaurant')
+const restaurantList = require('./models/restaurant')
 
 // setting static files
 app.use(express.static('public'))
 
 // route setting with models seeder connection
 app.get('/', (req, res) => {
-  restaurants.find()
+  restaurantList.find()
     .lean()
     .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.error(error))
@@ -55,17 +55,20 @@ app.post('/restaurants', (req, res) => {
   const rating = req.body.rating
   const description = req.body.description
 
-  return restaurants.create({ name, name_en, category, image, location, phone, google_map, rating, description })
+  return restaurantList.create({ name, name_en, category, image, location, phone, google_map, rating, description })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
-
-//route setting for show page
-app.get('/restaurants/:restaurant_id', (req, res) => {
-  const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-  res.render('show', { restaurant: restaurant })
+// route setting for show page
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  return restaurantList.findById(id)
+    .lean()
+    .then((restaurant) => res.render('show', { restaurant }))
+    .catch(error => console.log(error))
 })
+
 
 //route setting for search
 app.get('/search', (req, res) => {

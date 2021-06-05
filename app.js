@@ -4,7 +4,6 @@ const app = express()
 const port = 3000
 
 // set express handlebars(exphbs)
-
 const exphbs = require('express-handlebars')
 app.engine('handlebars', exphbs({ defaultlayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -21,19 +20,46 @@ db.once('open', () => {              // 連線成功
   console.log('mongodb connected!')
 })
 
+// 引用 body-parser
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: true }))
+
 // read models seeder
 const restaurants = require('./models/restaurant')
 
 // setting static files
 app.use(express.static('public'))
 
-//route setting with models seeder connection
+// route setting with models seeder connection
 app.get('/', (req, res) => {
   restaurants.find()
     .lean()
     .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.error(error))
 })
+
+// route setting for create new restaurant
+app.get('/restaurants/new', (req, res) => {
+  return res.render('new')
+})
+
+// route setting for catch created restaurant
+app.post('/restaurants', (req, res) => {
+  const name = req.body.name
+  const name_en = req.body.name_en
+  const category = req.body.category
+  const image = req.body.image
+  const location = req.body.location
+  const phone = req.body.phone
+  const google_map = req.body.google_map
+  const rating = req.body.rating
+  const description = req.body.description
+
+  return restaurants.create({ name, name_en, category, image, location, phone, google_map, rating, description })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
 
 //route setting for show page
 app.get('/restaurants/:restaurant_id', (req, res) => {

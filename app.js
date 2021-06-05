@@ -26,6 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // read models seeder
 const restaurantList = require('./models/restaurant')
+const restaurant = require('./models/restaurant')
 
 // setting static files
 app.use(express.static('public'))
@@ -69,11 +70,59 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// route setting for getting edit function
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  return restaurantList.findById(id)
+    .lean()
+    .then((restaurant) => res.render('edit', { restaurant }))
+    .catch(error => console.log(error))
+})
+
+// route setting for posting edit function
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  const name = req.body.name
+  const name_en = req.body.name_en
+  const category = req.body.category
+  const image = req.body.image
+  const location = req.body.location
+  const phone = req.body.phone
+  const google_map = req.body.google_map
+  const rating = req.body.rating
+  const description = req.body.description
+
+  return restaurantList.findById(id)
+    .then(restaurantEdit => {
+      restaurantEdit.name = name
+      restaurantEdit.name_en = name_en
+      restaurantEdit.category = category
+      restaurantEdit.image = image
+      restaurantEdit.location = location
+      restaurantEdit.phone = phone
+      restaurantEdit.google_map = google_map
+      restaurantEdit.rating = rating
+      restaurantEdit.description = description
+
+      return restaurantEdit.save()
+    })
+    .then(() => res.redirect(`/restaurants/${id}`))
+    .catch(error => console.log(error))
+})
+
+// route setting for deletion
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  return restaurantList.findById(id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 //route setting for search
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  const restaurants = restaurantList.results.filter(restaurant => {
+  const restaurants = restaurantList.filter(restaurant => {
     return restaurant.name.toLowerCase().includes(keyword.toLowerCase())
   })
   res.render('index', { restaurants: restaurants, keyword: keyword })

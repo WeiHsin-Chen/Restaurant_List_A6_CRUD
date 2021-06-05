@@ -36,6 +36,11 @@
 
       <img class="rounded mx-auto d-block mb-4 w-100" src="{{restaurant.image}}" alt="{{restaurant.name}}"
         style="max-width: 600px;">
+
+      <a href="/restaurants/{{ restaurant._id }}/edit">餐廳明細修改</a>
+      <form action="/restaurants/{{ restaurant._id }}/delete" method="POST" style="display: inline;">
+        <button type="submit">餐廳刪除</button>
+      </form>
     </div>
   </div>
 </div>

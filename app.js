@@ -21,16 +21,18 @@ db.once('open', () => {              // 連線成功
   console.log('mongodb connected!')
 })
 
-
-// read restaurant_list.json
-const restaurantList = require('./restaurant.json')
+// read models seeder
+const restaurants = require('./models/restaurant')
 
 // setting static files
 app.use(express.static('public'))
 
-//route setting 
+//route setting with models seeder connection
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantList.results })
+  restaurants.find()
+    .lean()
+    .then(restaurants => res.render('index', { restaurants }))
+    .catch(error => console.error(error))
 })
 
 //route setting for show page

@@ -11,7 +11,7 @@ db.once('open', () => {              // 連線成功
   restaurant.create(
     {
       "id": 1,
-      "name": "Sababa 沙巴巴中東美食",
+      "name": "Sababa 沙巴巴中東美食 hihihih",
       "name_en": "Sababa Pita Bar",
       "category": "中東料理",
       "image": "https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg",

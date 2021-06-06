@@ -123,15 +123,15 @@ app.post('/restaurants/:id/delete', (req, res) => {
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
 
-  return restaurantList.find({ name: `${keyword}` })
+  return restaurantList.find()
     .lean()
-    .then((restaurant) => res.render('index', { restaurant }))
+    .then((restaurantList) => {
+      const filteredRestaurants = restaurantList.filter(restaurant => {
+        return restaurant.name.toLowerCase().trim().includes(keyword.toLowerCase().trim())
+      })
+      res.render('index', { restaurants: filteredRestaurants })
+    })
     .catch(error => console.log(error))
-
-  // const restaurants = restaurantList.filter(restaurant => {
-  //   return restaurant.name.toLowerCase().includes(keyword.toLowerCase())
-  // })
-  // res.render('index', { restaurants: restaurants, keyword: keyword })
 })
 
 //start and listen on the Express server

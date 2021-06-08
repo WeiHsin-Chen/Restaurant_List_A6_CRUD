@@ -2,12 +2,27 @@ header {
   overflow: hidden;
 }
 
-.navbar .navbar-brand {
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar .navbar-brand .createBotton .btn:hover {
   color: #4592af;
 }
 
-.navbar .navbar-brand:hover {
+.navbar .navbar-brand:hover .createBotton .btn:hover {
   color: #226089;
+}
+
+.btn{
+  display:block; 
+  border: 2px solid #4592af;
+  border-radius: 8px;
+  width:100px;            /*List按鈕大小*/
+  height:40px;
+  line-height: 20px;      /*文字垂直置中*/
+  text-align: center;     /*文字水平置中*/
 }
 
 .banner {
@@ -35,15 +50,7 @@ header {
   color: #9b4b4b;
 }
 
-.createBotton{
-  margin: 10px auto;
-  max-width: 680px;
-  background-color: #fce2cf;
-  border-radius: 8px;
-  padding: 20px 30px;
-  border: 10px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
+
 
 .form-control::placeholder {
   color: #aaaaaa;

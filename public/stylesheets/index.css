@@ -7,11 +7,11 @@ nav {
   justify-content: space-between;
 }
 
-.navbar .navbar-brand .createBotton .btn:hover {
+.navbar .navbar-brand .createButton .btn:hover {
   color: #4592af;
 }
 
-.navbar .navbar-brand:hover .createBotton .btn:hover {
+.navbar .navbar-brand:hover .createButton .btn:hover {
   color: #226089;
 }
 

@@ -25,7 +25,6 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // read models seeder
-const restaurantList = require('./models/restaurant')
 const restaurant = require('./models/restaurant')
 
 // setting static files
@@ -33,7 +32,7 @@ app.use(express.static('public'))
 
 // route setting with models seeder connection
 app.get('/', (req, res) => {
-  restaurantList.find()
+  restaurant.find()
     .lean()
     .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.error(error))
@@ -56,7 +55,7 @@ app.post('/restaurants', (req, res) => {
   const rating = req.body.rating
   const description = req.body.description
 
-  return restaurantList.create({ name, name_en, category, image, location, phone, google_map, rating, description })
+  return restaurant.create({ name, name_en, category, image, location, phone, google_map, rating, description })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
@@ -64,7 +63,7 @@ app.post('/restaurants', (req, res) => {
 // route setting for show page
 app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
-  return restaurantList.findById(id)
+  return restaurant.findById(id)
     .lean()
     .then((restaurant) => res.render('show', { restaurant }))
     .catch(error => console.log(error))
@@ -73,7 +72,7 @@ app.get('/restaurants/:id', (req, res) => {
 // route setting for getting edit function
 app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
-  return restaurantList.findById(id)
+  return restaurant.findById(id)
     .lean()
     .then((restaurant) => res.render('edit', { restaurant }))
     .catch(error => console.log(error))
@@ -92,7 +91,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
   const rating = req.body.rating
   const description = req.body.description
 
-  return restaurantList.findById(id)
+  return restaurant.findById(id)
     .then(restaurantEdit => {
       restaurantEdit.name = name
       restaurantEdit.name_en = name_en
@@ -113,7 +112,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
 // route setting for deletion
 app.post('/restaurants/:id/delete', (req, res) => {
   const id = req.params.id
-  return restaurantList.findById(id)
+  return restaurant.findById(id)
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
@@ -121,13 +120,13 @@ app.post('/restaurants/:id/delete', (req, res) => {
 
 // route setting for search not yet
 app.get('/search', (req, res) => {
-  const keyword = req.query.keyword
+  const keyword = req.query.keyword.toLowerCase().trim()
 
-  return restaurantList.find()
+  return restaurant.find()
     .lean()
-    .then((restaurantList) => {
-      const filteredRestaurants = restaurantList.filter(restaurant => {
-        return restaurant.name.toLowerCase().trim().includes(keyword.toLowerCase().trim())
+    .then((restaurant) => {
+      const filteredRestaurants = restaurant.filter(restaurant => {
+        return restaurant.name.toLowerCase().trim().includes(keyword)
       })
       res.render('index', { restaurants: filteredRestaurants })
     })

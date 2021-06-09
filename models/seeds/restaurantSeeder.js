@@ -1,6 +1,6 @@
 const mongoose = require('mongoose') // 載入 mongoose
 const restaurant = require('../restaurant')  //載入restaurant model
-const rawData = require('../..//restaurant.json') //載入restaurant資料
+const rawData = require('../../restaurant.json') //載入restaurant資料
 
 mongoose.connect('mongodb://localhost/restaurant_list', { useNewUrlParser: true, useUnifiedTopology: true }) // 設定連線到 mongoDB
 

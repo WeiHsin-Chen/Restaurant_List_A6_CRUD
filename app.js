@@ -125,7 +125,7 @@ app.get('/search', (req, res) => {
   return restaurant.find()
     .lean()
     .then((restaurantList) => {
-      const filteredRestaurants = restaurant.filter(restaurant => {
+      const filteredRestaurants = restaurantList.filter(restaurant => {
         return restaurant.name.toLowerCase().trim().includes(keyword)
       })
       res.render('index', { restaurants: filteredRestaurants })

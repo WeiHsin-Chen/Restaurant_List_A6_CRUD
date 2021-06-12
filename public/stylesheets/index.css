@@ -7,22 +7,38 @@ nav {
   justify-content: space-between;
 }
 
-.navbar .navbar-brand .createButton .btn:hover {
+.navbar .navbar-brand  {
   color: #4592af;
 }
 
-.navbar .navbar-brand:hover .createButton .btn:hover {
+.navbar .navbar-brand:hover {
   color: #226089;
 }
 
-.btn{
-  display:block; 
-  border: 2px solid #4592af;
+.navbar-create {
+  color: white;
   border-radius: 8px;
-  width:100px;            /*List按鈕大小*/
-  height:40px;
+  border: #4592af;
+  background-color: 4592af;
+  width: 100px;            /*List按鈕大小*/
+  height: 40px;  
   line-height: 20px;      /*文字垂直置中*/
   text-align: center;     /*文字水平置中*/
+  font-size: medium;
+}
+
+.btn {
+  display:block; 
+  border-radius: 8px;
+  width: 70px;            /*List按鈕大小*/
+  height: 30px;  
+  line-height: 20px;      /*文字垂直置中*/
+  text-align: center;     /*文字水平置中*/
+}
+
+.CRUD {
+  padding-top: 1em;
+  justify-content: space-around;
 }
 
 .banner {
@@ -49,7 +65,6 @@ nav {
 .search-bar .search-bar-inner h4 {
   color: #9b4b4b;
 }
-
 
 
 .form-control::placeholder {

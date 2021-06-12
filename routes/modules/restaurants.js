@@ -85,20 +85,5 @@ router.delete('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// route setting for search not yet
-router.get('/search', (req, res) => {
-  const keyword = req.query.keyword.toLowerCase().trim()
-
-  return restaurant.find()
-    .lean()
-    .then((restaurantList) => {
-      const filteredRestaurants = restaurantList.filter(restaurant => {
-        return restaurant.name.toLowerCase().trim().includes(keyword)
-      })
-      res.render('index', { restaurants: filteredRestaurants })
-    })
-    .catch(error => console.log(error))
-})
-
 // 匯出路由模組
 module.exports = router

@@ -5,14 +5,13 @@ const router = express.Router()
 // 引用 Todo model
 const restaurant = require('../../models/restaurant')
 
-
 // route setting for create new restaurant
-router.get('/restaurants/new', (req, res) => {
+router.get('/new', (req, res) => {
   return res.render('new')
 })
 
 // route setting for catch created restaurant
-router.post('/restaurants', (req, res) => {
+router.post('/', (req, res) => {
   const name = req.body.name
   const name_en = req.body.name_en
   const category = req.body.category
@@ -29,7 +28,7 @@ router.post('/restaurants', (req, res) => {
 })
 
 // route setting for show page
-router.get('/restaurants/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   const id = req.params.id
   return restaurant.findById(id)
     .lean()
@@ -38,7 +37,7 @@ router.get('/restaurants/:id', (req, res) => {
 })
 
 // route setting for getting edit function
-router.get('/restaurants/:id/edit', (req, res) => {
+router.get('/:id/edit', (req, res) => {
   const id = req.params.id
   return restaurant.findById(id)
     .lean()
@@ -47,7 +46,7 @@ router.get('/restaurants/:id/edit', (req, res) => {
 })
 
 // route setting for posting edit function
-router.put('/restaurants/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   const id = req.params.id
   const name = req.body.name
   const name_en = req.body.name_en
@@ -78,7 +77,7 @@ router.put('/restaurants/:id', (req, res) => {
 })
 
 // route setting for deletion
-router.delete('/restaurants/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   const id = req.params.id
   return restaurant.findById(id)
     .then(restaurant => restaurant.remove())

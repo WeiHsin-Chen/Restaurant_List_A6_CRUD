@@ -42,7 +42,7 @@
               <div class="CRUD">
                 <a href="./restaurants/{{ this._id }}/edit">餐廳資訊修改</a>
                 <a href="./restaurants/{{ this._id }}">餐廳資訊</a>
-                <form action="./restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
+                <form action="./restaurants/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
                   <button type="submit">餐廳刪除</button>
                 </form>
               </div>

@@ -9,6 +9,8 @@
 - Express-Handlebars: 5.3.2
 - body-parser: 1.19.0
 - mongoose: 5.12.12"
+- handlebars-helpers: 0.10.0
+- method-override: 3.0.0
 
 ## 基本功能
 
@@ -35,6 +37,11 @@
 - 使用者可以瀏覽全部所有餐廳
 - 使用者可以修改一家餐廳的資訊
 - 使用者可以刪除一家餐廳
+
+(5)排序功能：
+- 用名字排序
+- 用類別排序
+- 用地區排序
 
 ## Getting Started
 Clone respository to your local computer

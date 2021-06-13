@@ -134,7 +134,14 @@ nav {
 
 .createRestaurant, .editRestaurant{
   margin: 2em auto;
-  display: flex;
   flex-flow: column nowrap;
   width: 600px;
+}
+
+.input-group-text {
+  width: 150px;
+}
+
+.inputforEdit {
+  width: 1  0px;
 }

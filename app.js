@@ -11,6 +11,10 @@ const exphbs = require('express-handlebars')
 app.engine('handlebars', exphbs({ defaultlayout: 'main' }))
 app.set('view engine', 'handlebars')
 
+// set handlebars-helpers
+const hbshelpers = require('handlebars-helpers')
+const helpers = hbshelpers()
+
 // connect mongoose setting
 require('./config/mongoose')
 

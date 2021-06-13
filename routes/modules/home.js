@@ -7,9 +7,12 @@ const restaurant = require('../../models/restaurant')
 
 // route setting with models seeder connection
 router.get('/', (req, res) => {
+  const sortBy = req.query.sortBy || '_id'
+
   restaurant.find()
     .lean()
-    .then(restaurants => res.render('index', { restaurants }))
+    .sort(sortBy)
+    .then(restaurants => res.render('index', { restaurants, sortBy }))
     .catch(error => console.error(error))
 })
 

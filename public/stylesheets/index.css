@@ -38,7 +38,7 @@ nav {
 
 .CRUD {
   padding-top: 1em;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .banner {
@@ -51,9 +51,15 @@ nav {
   filter: blur(3px);
 }
 
-.search-bar .search-bar-outer {
-  margin: 0 auto;
-  max-width: 680px;
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.search-bar .search-bar-outer, .sort-bar {
+  margin: 0 ;
+  max-width: 500px;
   background-color: #fce2cf;
   border-radius: 8px;
   padding: 20px 30px;
@@ -62,10 +68,9 @@ nav {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
-.search-bar .search-bar-inner h4 {
+.search-bar .search-bar-inner h4, .sort-bar h4 {
   color: #9b4b4b;
 }
-
 
 .form-control::placeholder {
   color: #aaaaaa;
@@ -110,6 +115,17 @@ nav {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+.createRestaurant, .editRestaurant{
+  margin: 2em auto;
+  flex-flow: column nowrap;
+  width: 600px;
+}
+
+.input-group-text {
+  width: 150px;
+}
+
+
 @media screen and (max-width: 992px) {
   
   .card img{
@@ -132,16 +148,3 @@ nav {
   
 }
 
-.createRestaurant, .editRestaurant{
-  margin: 2em auto;
-  flex-flow: column nowrap;
-  width: 600px;
-}
-
-.input-group-text {
-  width: 150px;
-}
-
-.inputforEdit {
-  width: 1  0px;
-}

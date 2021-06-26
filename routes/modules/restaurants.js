@@ -12,16 +12,7 @@ router.get('/new', (req, res) => {
 
 // route setting for catch created restaurant
 router.post('/', (req, res) => {
-  const name = req.body.name
-  const name_en = req.body.name_en
-  const category = req.body.category
-  const image = req.body.image
-  const location = req.body.location
-  const phone = req.body.phone
-  const google_map = req.body.google_map
-  const rating = req.body.rating
-  const description = req.body.description
-
+  const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
   return restaurant.create({ name, name_en, category, image, location, phone, google_map, rating, description })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
@@ -48,15 +39,7 @@ router.get('/:id/edit', (req, res) => {
 // route setting for posting edit function
 router.put('/:id', (req, res) => {
   const id = req.params.id
-  const name = req.body.name
-  const name_en = req.body.name_en
-  const category = req.body.category
-  const image = req.body.image
-  const location = req.body.location
-  const phone = req.body.phone
-  const google_map = req.body.google_map
-  const rating = req.body.rating
-  const description = req.body.description
+  const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
 
   return restaurant.findById(id)
     .then(restaurantEdit => {

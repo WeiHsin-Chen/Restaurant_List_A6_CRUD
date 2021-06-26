@@ -17,16 +17,15 @@
     </div>
   </div>
   <div class="sort-bar col-md-4 col-12">
-    <form action="/">
+    <form action="/filter" method="POST">
       <div class="form-group">
         <h4 class="mb-2">餐廳排序：</h4>
-        <select name="sortBy" id="inputSort" class="form-control" onchange="action='';submit();">
+        <select name="sortBy" id="inputSort" class="form-control" onchange="action='/filter';submit();">
           <option value="name" selected>名稱(按字母排序)</option>
           <option value="category" {{#if (eq sortBy 'category' )}} selected {{/if}}>類別</option>
           <option value="location" {{#if (eq sortBy 'location' )}} selected {{/if}}>地區</option>
         </select>
       </div>
-
     </form>
   </div>
 </div>

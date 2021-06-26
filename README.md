@@ -1,6 +1,6 @@
 # AC 學期 2-3 ｜ A6:餐廳清單擴充 CRUD 功能
 
-利用 Node.js 和 Express 打造一個簡單的餐廳清單網頁。
+利用 Node.js 和 Express 打造一個家庭記帳本。
 
 ## 安裝套件
 
@@ -8,45 +8,23 @@
 - Express: 4.17.1
 - Express-Handlebars: 5.3.2
 - body-parser: 1.19.0
-- mongoose: 5.12.12"
+- mongoose: 5.12.14
 - handlebars-helpers: 0.10.0
 - method-override: 3.0.0
 
 ## 基本功能
 
-(1)使用者可以在首頁看到餐廳清單和基本資料：
-
-- 照片
-- 名稱
-- 分類
-- 評分
-
-(2)使用者點擊餐廳可以看到餐廳的詳細資訊：
-
-- 類別
-- 地址
-- 電話
-- 描述
-- 圖片
-
-(3)使用者可以在首頁透過餐廳名稱或類別查詢餐廳。
-
-(4)打造CRUD功能：
-- 使用者可以新增一家餐廳
-- 使用者可以瀏覽一家餐廳的詳細資訊
-- 使用者可以瀏覽全部所有餐廳
-- 使用者可以修改一家餐廳的資訊
-- 使用者可以刪除一家餐廳
-
-(5)排序功能：
-- 用名字排序
-- 用類別排序
-- 用地區排序
+(1)在首頁一次瀏覽所有支出的清單
+(2)在首頁看到所有支出清單的總金額
+(3)新增一筆支出
+(4)編輯支出的所有屬性 (一次只能編輯一筆)
+(5)刪除任何一筆支出 (一次只能刪除一筆)
+(6)在首頁可以根據支出「類別」篩選支出；總金額的計算只會包括被篩選出來的支出總和。
 
 ## Getting Started
 Clone respository to your local computer
 ```
-$ git clone https://github.com/naluwan/restaurant_list.git
+$ git clone https://github.com/WeiHsin-Chen/expense-tracker.git
 ```
 Install by npm
 ```

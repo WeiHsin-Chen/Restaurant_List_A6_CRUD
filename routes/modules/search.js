@@ -8,13 +8,14 @@ const restaurant = require('../../models/restaurant')
 // route setting for search not yet
 router.get('/', (req, res) => {
   const keyword = req.query.keyword.toLowerCase().trim()
-
+  const sortBy = req.query.sortBy || '_id'
   return restaurant.find()
     .lean()
+    .sort(sortBy)
     .then((restaurantList) => {
       const filteredRestaurants = restaurantList.filter(restaurant =>
         restaurant.name.toLowerCase().trim().includes(keyword))
-      res.render('index', { restaurants: filteredRestaurants })
+      res.render('index', { restaurants: filteredRestaurants, keyword, sortBy })
     })
     .catch(error => console.log(error))
 })

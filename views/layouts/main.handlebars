@@ -5,11 +5,22 @@
       <a class="navbar-brand" href="/">
         <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
           width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
-        我的餐廳清單
+        {{#if isAuthenticated}}{{ user.name}}'s {{/if}}餐廳清單
       </a>
-      <a href="../../restaurants/new">
-        <button class="navbar-create" type="submit" class="d-inline-block">新增餐廳</button>
-      </a>
+      <div class="row">
+        <a href="../../restaurants/new" class="mr-3">
+          <button class="navbar-create" type="submit" class="d-inline-block">新增餐廳</button>
+        </a>
+        {{#if isAuthenticated}}
+        <a href="/users/logout">
+          <button class="navbar-create" type="submit" class="d-inline-block">Logout</button>
+        </a>
+        {{else}}
+        <a href="/users/login">
+          <button class="navbar-create" type="submit" class="d-inline-block">Login</button>
+        </a>
+        {{/if}}
+      </div>
     </div>
   </nav>
 

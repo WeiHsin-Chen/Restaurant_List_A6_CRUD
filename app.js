@@ -9,6 +9,7 @@ const helpers = hbshelpers()
 const bodyParser = require('body-parser')          // setting body-parser
 const methodOverride = require('method-override')  // setting method-override
 const routes = require('./routes')                 // 引用 routes
+const usePassport = require('./config/passport')
 
 
 app.engine('handlebars', exphbs({ defaultlayout: 'main' }))
@@ -21,8 +22,10 @@ app.use(session({
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
 app.use(methodOverride('_method'))
-app.use(routes)
 
+usePassport(app)
+
+app.use(routes)
 
 // connect mongoose setting
 require('./config/mongoose')

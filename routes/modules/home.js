@@ -7,7 +7,8 @@ const restaurant = require('../../models/restaurant')
 
 // route setting with models seeder connection
 router.get('/', (req, res) => {
-  restaurant.find()
+  const userId = req.user._id
+  restaurant.find({ userId })
     .lean()
     .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.error(error))

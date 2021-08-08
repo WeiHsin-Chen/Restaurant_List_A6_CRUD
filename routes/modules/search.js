@@ -7,9 +7,10 @@ const restaurant = require('../../models/restaurant')
 
 // route setting for search not yet
 router.get('/', (req, res) => {
+  const userId = req.user._id
   const keyword = req.query.keyword.toLowerCase().trim()
   const sortBy = req.query.sortBy || '_id'
-  return restaurant.find()
+  return restaurant.find({ userId })
     .lean()
     .sort(sortBy)
     .then((restaurantList) => {

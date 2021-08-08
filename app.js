@@ -2,13 +2,15 @@
 const express = require('express')
 const app = express()
 const session = require('express-session')
-const port = 3000
 const exphbs = require('express-handlebars')      // set express handlebars(exphbs)
 const hbshelpers = require('handlebars-helpers')  // set handlebars-helpers
 const helpers = hbshelpers()
 const bodyParser = require('body-parser')          // setting body-parser
 const methodOverride = require('method-override')  // setting method-override
 const flash = require('connect-flash')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 const routes = require('./routes')                 // 引用 routes
 const usePassport = require('./config/passport')
@@ -17,7 +19,7 @@ const usePassport = require('./config/passport')
 app.engine('handlebars', exphbs({ defaultlayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(session({
-  secret: 'ThisIsMySecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
@@ -49,6 +51,6 @@ app.use(routes)
 require('./config/mongoose')
 
 //start and listen on the Express server
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
 })
 

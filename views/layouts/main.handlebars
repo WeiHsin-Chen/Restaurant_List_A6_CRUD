@@ -8,9 +8,11 @@
         {{#if isAuthenticated}}{{ user.name}}'s {{/if}}餐廳清單
       </a>
       <div class="row">
+        {{#if isAuthenticated}}
         <a href="../../restaurants/new" class="mr-3">
           <button class="navbar-create" type="submit" class="d-inline-block">新增餐廳</button>
         </a>
+        {{/if}}
         {{#if isAuthenticated}}
         <a href="/users/logout">
           <button class="navbar-create" type="submit" class="d-inline-block">Logout</button>

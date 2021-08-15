@@ -2,7 +2,7 @@
 const express = require('express')
 const router = express.Router()
 
-// 引用 Todo model
+// 引用 Restaurant model
 const restaurant = require('../../models/restaurant')
 
 // route setting for search not yet
@@ -21,5 +21,4 @@ router.get('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// 匯出路由模組
 module.exports = router

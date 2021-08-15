@@ -1,15 +1,22 @@
-# AC 學期 2-3 ｜ A6:餐廳清單擴充 CRUD 功能
+# AC 學期 3 ｜ A1:完成餐廳清單
 
 利用 Node.js 和 Express 打造一個家庭記帳本。
 
 ## 安裝套件
 
-- Node.js: 10.24.1
-- Express: 4.17.1
-- Express-Handlebars: 5.3.2
-- body-parser: 1.19.0
-- mongoose: 5.12.14
+- node.js: 10.24.1
+- express: 4.17.1
+- express-session: 1.17.2
+- express-Handlebars: 5.3.2
 - handlebars-helpers: 0.10.0
+- body-parser: 1.19.0
+- mongoose: 5.12.12
+- passport: 0.4.1
+- passport-facebook: 3.0.0
+- passport-local: 1.0.0
+- bcryptjs: 2.4.3
+- connect-flash: 0.1.1
+- dotenv: 10.0.0
 - method-override: 3.0.0
 
 ## 基本功能

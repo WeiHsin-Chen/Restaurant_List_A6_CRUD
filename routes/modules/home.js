@@ -2,7 +2,7 @@
 const express = require('express')
 const router = express.Router()
 
-// 引用 Todo model
+// 引用 Restaurant model
 const restaurant = require('../../models/restaurant')
 
 // route setting with models seeder connection
@@ -14,5 +14,4 @@ router.get('/', (req, res) => {
     .catch(error => console.error(error))
 })
 
-// 匯出路由模組
 module.exports = router

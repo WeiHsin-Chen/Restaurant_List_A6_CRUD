@@ -13,7 +13,6 @@ router.get('/new', (req, res) => {
 // route setting for catch created restaurant
 router.post('/', (req, res) => {
   const userId = req.user._id
-  const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
   return restaurant.create({ ...req.body, userId })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))

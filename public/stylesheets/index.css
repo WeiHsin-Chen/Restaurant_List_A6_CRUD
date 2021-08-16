@@ -30,7 +30,7 @@ nav {
 .btn {
   display:block; 
   border-radius: 8px;
-  width: 70px;            /*List按鈕大小*/
+  width: 150px;            /*List按鈕大小*/
   height: 30px;  
   line-height: 20px;      /*文字垂直置中*/
   text-align: center;     /*文字水平置中*/

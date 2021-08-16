@@ -6,7 +6,8 @@ const restaurantSchema = new Schema({
     type: String
   },
   name: {
-    type: String, required: true
+    type: String,
+    required: true
   },
   name_en: {
     type: String

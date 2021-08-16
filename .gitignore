@@ -2,7 +2,7 @@
 Thumbs.db
 ehthumbs.db
 Desktop.ini
-*.jpg
+/picture
 
 # npm
 /node_modules

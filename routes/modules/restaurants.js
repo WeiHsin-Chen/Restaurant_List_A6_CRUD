@@ -14,7 +14,7 @@ router.get('/new', (req, res) => {
 router.post('/', (req, res) => {
   const userId = req.user._id
   const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
-  return restaurant.create({ name, name_en, category, image, location, phone, google_map, rating, description, userId })
+  return restaurant.create({ ...req.body, userId })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
@@ -47,16 +47,7 @@ router.put('/:id', (req, res) => {
 
   return restaurant.findOne({ _id, userId })
     .then(restaurantEdit => {
-      restaurantEdit.name = name
-      restaurantEdit.name_en = name_en
-      restaurantEdit.category = category
-      restaurantEdit.image = image
-      restaurantEdit.location = location
-      restaurantEdit.phone = phone
-      restaurantEdit.google_map = google_map
-      restaurantEdit.rating = rating
-      restaurantEdit.description = description
-
+      Object.assign(restaurantEdit, req.body)
       return restaurantEdit.save()
     })
     .then(() => res.redirect(`/restaurants/${_id}`))
